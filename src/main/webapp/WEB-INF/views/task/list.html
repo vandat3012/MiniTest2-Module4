@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>List Task</title>
+</head>
+<body>
+<h3>Task</h3>
+<p>
+    <a th:href="@{/tasks/create}">
+        Add new customer
+    </a>
+</p>
+<p>
+    <a th:href="@{/categories}">
+        Categories
+    </a>
+</p>
+<div style="margin-bottom: 10px; margin-left: 110px">
+    <form th:action="@{/task/search}">
+        <label><input type="text" name="search"></label>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+
+<table id = "tasks">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Name</th>
+        <th>Note</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="t,tStatus : ${tasks}">
+        <td th:text="${tStatus.count}"></td>
+        <td th:text="${t.getName()}"></td>
+        <td th:text="${t.getNote()}"></td>
+        <td th:text="${t.getAmount()}"></td>
+        <td th:text="${t.getCategory().getName()}"></td>
+        <td th:text="${t.getCategory().getDescription()}"></td>
+        <td><a th:href="@{/tasks/edit/{id}(id=${t.getId()})}">Edit</a></td>
+        <td><a th:href="@{/tasks/delete/{id}(id=${t.getId()})}">delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>ListCustomer</title>
+</head>
+<body>
+<h3>Category</h3>
+<h1></h1>
+<table>
+    <thead>
+    <tr>
+        <th>Name Category</th>
+        <th>Total Amount</th>
+    </tr>
+    </thead>
+    <tbody th:each="c: ${c}">
+    <tr>
+        <td th:text="${c.getNameCa()}"></td>
+        <td th:text="${c.getTotalAmount()}"></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

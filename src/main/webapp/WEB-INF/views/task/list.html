@@ -16,7 +16,7 @@
     </a>
 </p>
 <div style="margin-bottom: 10px; margin-left: 110px">
-    <form th:action="@{/task/search}">
+    <form th:action="@{/tasks/search}">
         <label><input type="text" name="search"></label>
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
@@ -48,6 +48,11 @@
     </tr>
     </tbody>
 </table>
+<a class="btn btn-primary" th:if="${tasks.hasPrevious()}"
+   th:href="@{'/tasks?page='+${tasks.number - 1}}">Previous</a>
+<span th:text="${tasks.number + 1}"></span> | <span th:text="${tasks.totalPages}"></span>
+<a class="btn btn-primary" th:if="${tasks.hasNext()}"
+   th:href="@{'/tasks?page='+${tasks.number + 1}}">Next</a>
 <footer th:replace="/layout :: footer"></footer>
 </body>
 </html>

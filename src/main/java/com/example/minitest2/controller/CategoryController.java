@@ -6,6 +6,8 @@ import com.example.minitest2.model.Task;
 import com.example.minitest2.service.category.ICategoryService;
 import com.example.minitest2.service.task.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +18,6 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/categories")
 public class CategoryController {
-    @Autowired
-    private ITaskService iTaskService;
     @Autowired
     private ICategoryService iCategoryService;
 

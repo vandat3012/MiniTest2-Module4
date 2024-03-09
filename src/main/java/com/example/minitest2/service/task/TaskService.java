@@ -5,6 +5,8 @@ import com.example.minitest2.model.Category;
 import com.example.minitest2.model.Task;
 import com.example.minitest2.repository.IRepositoryTask;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -37,7 +39,15 @@ public class TaskService implements ITaskService{
         return iRepositoryTask.findAllByCategory(category);
     }
 
+    @Override
+    public Page<Task> findAll(Pageable pageable) {
+        return iRepositoryTask.findAll(pageable);
+    }
 
+    @Override
+    public Page<Task> findByName(Pageable pageable, String name) {
+        return iRepositoryTask.findByName(pageable,name);
+    }
 
 
 }

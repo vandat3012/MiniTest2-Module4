@@ -15,12 +15,7 @@
         Tasks
     </a>
 </p>
-<div style="margin-bottom: 10px; margin-left: 110px">
-    <form th:action="@{/categories/search}">
-        <label><input type="text" name="search"></label>
-        <button type="submit" class="btn btn-primary">Search</button>
-    </form>
-</div>
+
 
 <table id = "tasks">
     <thead>
@@ -28,6 +23,8 @@
         <th>STT</th>
         <th>Category</th>
         <th>Description</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
     </thead>
     <tbody>

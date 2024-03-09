@@ -5,6 +5,7 @@ import com.example.minitest2.model.Task;
 import com.example.minitest2.service.category.ICategoryService;
 import com.example.minitest2.service.task.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -27,11 +28,24 @@ public class TaskController {
     }
 
     @GetMapping("")
-    public String showList(Model model) {
-        Iterable<Task> tasks = iTaskService.findAll();
-        model.addAttribute("tasks",tasks);
+    public String showList(@PageableDefault(size = 2)Pageable pageable,Model model) {
+        Page<Task> taskPage = iTaskService.findAll(pageable);
+        model.addAttribute("tasks",taskPage);
         return "task/list";
     }
+    @GetMapping("/search")
+    public ModelAndView listCustomersSearch(@RequestParam("search") Optional<String> search, Pageable pageable){
+        Page<Task> tasks;
+        if(search.isPresent()){
+            tasks = iTaskService.findByName(pageable, search.get());
+        } else {
+            tasks = iTaskService.findAll(pageable);
+        }
+        ModelAndView modelAndView = new ModelAndView("task/list");
+        modelAndView.addObject("tasks", tasks);
+        return modelAndView;
+    }
+
     @GetMapping("/create")
     public String showCreate (Model model) {
         model.addAttribute("tasks",new Task());

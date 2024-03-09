@@ -13,9 +13,9 @@
         <th>Total Amount</th>
     </tr>
     </thead>
-    <tbody th:each="c: ${c}">
+    <tbody th:each="c: ${categories}">
     <tr>
-        <td th:text="${c.getNameCa()}"></td>
+        <td th:text="${c.getName()}"></td>
         <td th:text="${c.getTotalAmount()}"></td>
     </tr>
     </tbody>

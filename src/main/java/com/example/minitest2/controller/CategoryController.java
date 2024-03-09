@@ -62,9 +62,9 @@ public class CategoryController {
     }
     @GetMapping("/count")
     public ModelAndView count(){
-        ModelAndView all = new ModelAndView("category/moneyofcategory");
-        Iterable<TotalAmountOfCategory> c = iCategoryService.count1();
-        all.addObject("c", c);
-        return all;
+        ModelAndView modelAndView = new ModelAndView("category/moneyofcategory");
+        Iterable<TotalAmountOfCategory> categories = iCategoryService.count1();
+        modelAndView.addObject("categories", categories);
+        return modelAndView;
     }
 }

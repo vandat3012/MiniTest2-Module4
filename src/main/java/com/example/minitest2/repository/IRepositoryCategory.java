@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.ModelAttribute;
 @Repository
 public interface IRepositoryCategory extends CrudRepository<Category,Long> {
-    @Query(nativeQuery = true, value = "select c.name, sum(t.amount) as total_amount\n" +
+    @Query(nativeQuery = true, value = "select c.name, sum(t.amount) as TotalAmount\n" +
             "from category c left join task t on c.id = t.category_id\n" +
             "group by c.name;")
     Iterable<TotalAmountOfCategory> countByName();
